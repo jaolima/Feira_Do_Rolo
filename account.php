@@ -1,10 +1,12 @@
 <?php
+
 include_once 'header.php';
+
 
 ?>
     <!-- Header -->
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-         style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+         style="min-height: 600px; background-image: url(images/rolezeiro.jpg); background-size: cover; background-position: center top;">
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
         <!-- Header container -->
@@ -26,7 +28,14 @@ include_once 'header.php';
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="../assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                    <?php
+
+                                   if ($result) {
+                                            $obj = $result->fetch_object();
+                                            ?>
+                                    <img  class="rounded-circle" src="images/<?= $obj->imagem ?>" />
+                                    <?php } ?>
+
                                 </a>
                             </div>
                         </div>
@@ -99,15 +108,12 @@ include_once 'header.php';
                                         <?php
 
                                         $result = $mysqli->query('SELECT * FROM users WHERE id=' . $_SESSION['id']);
-                                        $img = $mysqli->query('SELECT * FROM imagem WHERE id=' . $_SESSION['id']);
-
-                                        if ($result === FALSE) {
-                                            die(mysql_error());
-                                        }
 
                                         if ($result) {
                                             $obj = $result->fetch_object();
+
                                             echo '<input type="text" id="right-label" placeholder="' . $obj->fname . '" name="fname">';
+
 
                                             echo '</div>';
                                             echo '</div>';
@@ -130,7 +136,6 @@ include_once 'header.php';
                                             echo '  <label class="form-control-label" for="input-email">E-mail</label>';
 
                                             echo '<input type="email" id="right-label" placeholder="' . $obj->email . '" name="email">';
-
                                             echo '</div>';
                                             echo '</div>';
                                             echo '  <div class="col-lg-6">';
@@ -141,7 +146,9 @@ include_once 'header.php';
 
                                             echo '</div>';
                                             echo '</div>';
-                                        } ?>
+                                        }
+
+                                        ?>
                                     </div>
                                 </div>
                                 <hr class="my-4"/>

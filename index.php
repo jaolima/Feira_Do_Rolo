@@ -5,8 +5,8 @@ include_once 'header.php';
 ?>
 
 
-    <img data-interchange="[images/bolt-retina.jpg, (retina)], [images/bolt-landscape.jpg, (large)], [images/bolt-mobile.jpg, (mobile)], [images/bolt-landscape.jpg, (medium)]">
-    <noscript><img src="images/bolt-landscape.jpg"></noscript>
+    <img data-interchange="[images/home.jpg, (retina)], [images/home.jpg, (large)], [images/home.jpg, (mobile)], [images/home.jpg, (medium)]">
+    <noscript><img src="images/home.jpg"></noscript>
 
 
 <?php

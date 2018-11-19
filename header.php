@@ -4,12 +4,7 @@ if (session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 
-
 include 'config.php';
-
-if (!isset($_SESSION["username"])) {
-    include_once 'header.php';
-}
 ?>
 
 
@@ -44,9 +39,6 @@ if (!isset($_SESSION["username"])) {
 <!-- Navbar -->
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
-<!--        <a class="navbar-brand" href="../index.html">-->
-<!--            <img src="../assets/img/brand/white.png"/>-->
-<!--        </a>-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -73,9 +65,10 @@ if (!isset($_SESSION["username"])) {
 
                 <?php
                 if (isset($_SESSION['username'])) {
-                    //logout
-                    echo '
-                    
+                    $result = $mysqli->query('SELECT * FROM users WHERE id=' . $_SESSION['id']);
+
+                    $result1 = $mysqli->query('SELECT * FROM users WHERE id=' . $_SESSION['id']);
+                    ?>
                          <!-- Menu dropdown da nav-->
                            <ul class="navbar-nav ml-auto">
             <ul class="navbar-nav align-items-center d-none d-md-flex" >
@@ -84,10 +77,17 @@ if (!isset($_SESSION["username"])) {
                        aria-expanded="false">
                         <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="../assets/img/theme/team-4-800x800.jpg">
+                    <?php
+                    if ($result1) {
+                        $obj = $result1->fetch_object();
+                                            ?>
+                                    <img alt="Image placeholder" class="rounded-circle" src="images/<?= $obj->imagem ?>" />
+                    <?php } ?>
                 </span>
                             <div class="media-body ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold">'; ?>  <?= 'Olá ' . $_SESSION['fname']; ?> <?= '</span>
+                                <span class="mb-0 text-sm  font-weight-bold">
+                                    <?= 'Olá ' . $_SESSION['fname']; ?>
+                                </span>
                             </div>
                         </div>
                     </a>
@@ -103,14 +103,18 @@ if (!isset($_SESSION["username"])) {
                             <i class="ni ni-settings-gear-65"></i>
                             <span>Carrinho</span>
                         </a>
-                        <a href="about.php" class="dropdown-item">
-                            <i class="ni ni-calendar-grid-58"></i>
-                            <span>Sobre</span>
-                        </a>
                         <a href="orders.php" class="dropdown-item">
                             <i class="ni ni-calendar-grid-58"></i>
                             <span>Home</span>
                         </a>
+                        <?php
+                        if($_SESSION["type"]=="admin") {
+                        ?>
+                        <a href="new_product.php" class="dropdown-item">
+                            <i class="ni ni-calendar-grid-58"></i>
+                            <span>Novo Produto</span>
+                        </a>
+                       <?php } ?>
 
                         <a href="products.php" class="dropdown-item">
                             <i class="ni ni-support-16"></i>
@@ -125,7 +129,7 @@ if (!isset($_SESSION["username"])) {
                 </li>
             </ul>
             </ul>
-                    ';
+            <?php
 
                 } else {
 
@@ -135,7 +139,7 @@ if (!isset($_SESSION["username"])) {
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="products.php">
                         <i class="ni ni-planet"></i>
-                        <span class="nav-link-inner--text">Products</span>
+                        <span class="nav-link-inner--text">Produtos</span>
                     </a>
                 </li>
       

@@ -11,7 +11,7 @@ include_once 'header.php';
       <div class="large-12">
         <?php
 
-          echo '<p><h3>Your Shopping Cart</h3></p>';
+          echo '<p><h3>Seu carrinho está vazio</h3></p>';
 
           if(isset($_SESSION['cart'])) {
 
@@ -53,9 +53,9 @@ include_once 'header.php';
           echo '</tr>';
 
           echo '<tr>';
-          echo '<td colspan="4" align="right"><a href="update-cart.php?action=empty" class="button alert">Empty Cart</a>&nbsp;<a href="products.php" class="button [secondary success alert]">Continue Shopping</a>';
+          echo '<td colspan="4" align="right"><a href="update-cart.php?action=empty" class="button alert">Esvaziar carrinho</a>&nbsp;<a href="products.php" class="button [secondary success alert]">Continuar Comprando</a>';
           if(isset($_SESSION['username'])) {
-            echo '<a href="orders-update.php"><button style="float:right;">COD</button></a>';
+            echo '<a href="orders-update.php"><button style="float:right;">Comprar</button></a>';
           }
 
           else {
@@ -69,7 +69,7 @@ include_once 'header.php';
         }
 
         else {
-          echo "You have no items in your shopping cart.";
+          echo "Vai Comprar !!";
         }
 
 
@@ -79,22 +79,6 @@ include_once 'header.php';
           echo '</div>';
           echo '</div>';
           ?>
-
-
-
-    <div class="row" style="margin-top:10px;">
-      <div class="small-12">
-
-
-
-
-        <footer style="margin-top:10px;">
-           <p style="text-align:center; font-size:0.8em;clear:both;">&copy; BOLT Sports Shop. All Rights Reserved.</p>
-        </footer>
-
-      </div>
-    </div>
-
 
 
 

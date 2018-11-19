@@ -1,8 +1,14 @@
 <?php
+
 include_once 'header.php';
 
 ?>
+<?php
+if($_SESSION["type"]!="admin") {
+    header("location:index.php");
+}
 
+?>
 <div class="header bg-gradient-primary py-7 py-lg-8">
     <div class="container">
         <div class="header-body text-center mb-7">
@@ -83,6 +89,9 @@ include_once 'header.php';
                         </div>
                     </div>
 
+                    <!--Imagem-->
+                    <input type="file" name="arquivo" >
+
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary my-4" id="right-label" value="Cadastrar" style="background: #0078A0; border: none; color: #fff; font-family: 'Helvetica Neue', sans-serif; font-size: 1em; padding: 10px;">
                         <input type="reset" class="btn btn-primary my-4" id="right-label" value="Limpar" style="background: #0078A0; border: none; color: #fff; font-family: 'Helvetica Neue', sans-serif; font-size: 1em; padding: 10px;">
@@ -97,11 +106,5 @@ include_once 'header.php';
 </div>
 
 
-
-<script src="js/vendor/jquery.js"></script>
-<script src="js/foundation.min.js"></script>
-<script>
-    $(document).foundation();
-</script>
-</body>
-</html>
+<?php
+include_once 'log_footer.php';

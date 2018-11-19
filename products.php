@@ -14,17 +14,13 @@ include_once 'header.php';
                 $product_quantity = array();
 
                 $result = $mysqli->query('SELECT * FROM products');
-                if ($result === FALSE) {
-                    die(mysql_error());
-                }
 
                 if ($result) {
-
                     while ($obj = $result->fetch_object()) {
 
                         echo '<div class="large-4 columns card">';
                         echo '<p><h3>' . $obj->product_name . '</h3></p>';
-                        echo '<img src="images/products/' . $obj->product_img_name . '"/>';
+                        echo '<img src="' . $obj->imagem . '"/>';
                         echo '<p><strong>Descrição</strong>: ' . $obj->product_desc . '</p>';
                         echo '<p><strong>Código</strong>: ' . $obj->product_code . '</p>';
                         echo '<p><strong>Unidades disponíveis</strong>: ' . $obj->qty . '</p>';
@@ -34,7 +30,7 @@ include_once 'header.php';
                         if ($obj->qty > 0) {
                             echo '<p><a class="btn btn-outline-info" href="update-cart.php?action=add&id=' . $obj->id . '">  <i class="fa fa-cart-plus"></i> </a>  </p>';
                         } else {
-                            echo 'Out Of Stock!';
+                            echo 'Tem nada!';
                         }
                         echo '</div>';
 
