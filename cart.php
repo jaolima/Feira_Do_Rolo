@@ -4,24 +4,34 @@ include_once 'header.php';
 
 ?>
 
-
-
-
-    <div class="row" style="margin-top:10px;">
-      <div class="large-12">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+     style="min-height: 600px; background-image: url(images/157.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-default opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+            <div class="col-lg-7 col-md-10">
         <?php
+        if(!isset($_SESSION['cart'])){
+            echo '  <h1 class="display-2 text-white">Seu Carrinho está vazio</h1>';
+            echo " <p class=\"text-white mt-0 mb-5\">Vá comprar</p>";
 
-          echo '<p><h3>Seu carrinho está vazio</h3></p>';
+            echo ' </div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
 
           if(isset($_SESSION['cart'])) {
 
             $total = 0;
             echo '<table>';
             echo '<tr>';
-            echo '<th>Code</th>';
-            echo '<th>Name</th>';
-            echo '<th>Quantity</th>';
-            echo '<th>Cost</th>';
+            echo '<th>Código</th>';
+            echo '<th>Nome</th>';
+            echo '<th>Quantidade</th>';
+            echo '<th>Preço</th>';
             echo '</tr>';
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
@@ -31,13 +41,13 @@ include_once 'header.php';
             if($result){
 
               while($obj = $result->fetch_object()) {
-                $cost = $obj->price * $quantity; //work out the line cost
-                $total = $total + $cost; //add to the total cost
+                $cost = $obj->price * $quantity;
+                $total = $total + $cost; //adicionando o custo total
 
                 echo '<tr>';
                 echo '<td>'.$obj->product_code.'</td>';
                 echo '<td>'.$obj->product_name.'</td>';
-                echo '<td>'.$quantity.'&nbsp;<a class="button [secondary success alert]" style="padding:5px;" href="update-cart.php?action=add&id='.$product_id.'">+</a>&nbsp;<a class="button alert" style="padding:5px;" href="update-cart.php?action=remove&id='.$product_id.'">-</a></td>';
+                echo '<td>'.$quantity.'&nbsp;<a class="button" style="padding:5px;" href="update-cart.php?action=add&id='.$product_id.'">  <i class="ni ni-fat-add"></i></a>&nbsp;<a class="button alert" style="padding:5px;" href="update-cart.php?action=remove&id='.$product_id.'"><i class="ni ni-fat-delete"></i></a></td>';
                 echo '<td>'.$cost.'</td>';
                 echo '</tr>';
               }
@@ -53,9 +63,9 @@ include_once 'header.php';
           echo '</tr>';
 
           echo '<tr>';
-          echo '<td colspan="4" align="right"><a href="update-cart.php?action=empty" class="button alert">Esvaziar carrinho</a>&nbsp;<a href="products.php" class="button [secondary success alert]">Continuar Comprando</a>';
+          echo '<td colspan="4" align="right"><a href="update-cart.php?action=empty" class="button">Esvaziar carrinho</a>&nbsp;<a href="products.php" class="button ">Continuar Comprando</a>';
           if(isset($_SESSION['username'])) {
-            echo '<a href="orders-update.php"><button style="float:right;">Comprar</button></a>';
+            echo '<a href="orders-update.php"><button style="float:right;"><i class="fa fa-cart-plus"></i></button></a>';
           }
 
           else {
@@ -66,10 +76,6 @@ include_once 'header.php';
 
           echo '</tr>';
           echo '</table>';
-        }
-
-        else {
-          echo "Vai Comprar !!";
         }
 
 

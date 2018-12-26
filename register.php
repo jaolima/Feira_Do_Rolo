@@ -32,12 +32,12 @@ include_once 'header.php';
                 </div>
 
                 <!--Formulário-->
-                <form method="POST" role="form" action="insert.php" style="margin-top:30px;" enctype="multipart/form-data">
+                <form name="form1ulario" method="POST" role="form" action="insert.php" style="margin-top:30px;"  onsubmit="envia()" enctype="multipart/form-data">
                     <!--Primeiro Nome-->
                     <div class="form-group mb-3">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control" placeholder="Primeiro Nome" id="right-label"  type="text" name="fname">
                         </div>
@@ -47,7 +47,7 @@ include_once 'header.php';
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control"  id="right-label" placeholder="Último Nome" type="text" name="lname">
                         </div>
@@ -57,7 +57,7 @@ include_once 'header.php';
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control"  id="right-label" placeholder="Endereço" type="text" name="address">
                         </div>
@@ -67,7 +67,7 @@ include_once 'header.php';
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control" placeholder="Cidade" type="text" id="right-label" name="city">
                         </div>
@@ -77,7 +77,7 @@ include_once 'header.php';
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control" type="number"   id="right-label" placeholder="Cep" type="text" name="pin">
                         </div>
@@ -87,7 +87,7 @@ include_once 'header.php';
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control"  id="right-label" placeholder="E-mail" type="email"  name="email">
                         </div>
@@ -97,7 +97,7 @@ include_once 'header.php';
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control"  type="password" id="right-label" name="pwd" placeholder="Senha">
                         </div>
@@ -105,8 +105,6 @@ include_once 'header.php';
 
                     <!--Imagem-->
                     <input type="file" name="arquivo" >
-
-
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary my-4" id="right-label" value="Cadastrar" style="background: #0078A0; border: none; color: #fff; font-family: 'Helvetica Neue', sans-serif; font-size: 1em; padding: 10px;">
                         <input type="reset" class="btn btn-primary my-4" id="right-label" value="Limpar" style="background: #0078A0; border: none; color: #fff; font-family: 'Helvetica Neue', sans-serif; font-size: 1em; padding: 10px;">
@@ -120,7 +118,23 @@ include_once 'header.php';
 </div>
 </div>
 
-
+<script>
+    function showHint(str) {
+        if (str.length == 0) {
+            document.getElementById("txtHint").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "gethint.php?q=" + str, true);
+            xmlhttp.send();
+        }
+    }
+</script>
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>

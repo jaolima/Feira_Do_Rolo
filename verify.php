@@ -1,6 +1,5 @@
 <?php
 
-//if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(session_id() == '' || !isset($_SESSION)){session_start();}
 
 include 'config.php';
@@ -9,10 +8,6 @@ $username = $_POST["username"];
 $password = $_POST["pwd"];
 $flag = 'true';
 $result = $mysqli->query('SELECT id,email,password,fname,type from users order by id asc');
-
-if($result === FALSE){
-  die(mysql_error());
-}
 
 if($result){
   while($obj = $result->fetch_object()){
@@ -34,7 +29,7 @@ if($result){
 }
 
 function redirect() {
-  echo '<h1>Invalid Login! Redirecting...</h1>';
+  echo '<h1>login Invalido...</h1>';
   header("Refresh: 3; url=index.php");
 }
 

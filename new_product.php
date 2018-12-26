@@ -43,7 +43,7 @@ if($_SESSION["type"]!="admin") {
                     <div class="form-group mb-3">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control" placeholder="Título Do Produto" id="right-label"  type="text" name="titulo">
                         </div>
@@ -53,7 +53,7 @@ if($_SESSION["type"]!="admin") {
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control"  id="right-label" placeholder="Código" type="text" name="code">
                         </div>
@@ -63,7 +63,7 @@ if($_SESSION["type"]!="admin") {
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control"  id="right-label" placeholder="Descrição" type="text" name="desc">
                         </div>
@@ -73,7 +73,7 @@ if($_SESSION["type"]!="admin") {
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control" placeholder="Quantidade" type="text" id="right-label" name="qtd">
                         </div>
@@ -83,7 +83,7 @@ if($_SESSION["type"]!="admin") {
                     <div class="form-group">
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                <span class="input-group-text"><i class="ni ni-bold-right"></i></span>
                             </div>
                             <input class="form-control" type="number"   id="right-label" placeholder="Preço" type="text" name="price">
                         </div>

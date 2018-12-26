@@ -1,0 +1,116 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema comercio
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema comercio
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `comercio` DEFAULT CHARACTER SET latin1 ;
+USE `comercio` ;
+
+-- -----------------------------------------------------
+-- Table `comercio`.`imagem`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comercio`.`imagem` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `comercio`.`orders`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comercio`.`orders` (
+  `id` INT(15) NOT NULL AUTO_INCREMENT,
+  `product_code` VARCHAR(255) NOT NULL,
+  `product_name` VARCHAR(255) NOT NULL,
+  `product_desc` VARCHAR(255) NOT NULL,
+  `price` INT(10) NOT NULL,
+  `units` INT(5) NOT NULL,
+  `total` INT(15) NOT NULL,
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `email` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = MyISAM
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `comercio`.`products`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comercio`.`products` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product_code` VARCHAR(60) NOT NULL,
+  `product_name` VARCHAR(60) NOT NULL,
+  `product_desc` TINYTEXT NOT NULL,
+  `product_img_name` VARCHAR(60) NOT NULL,
+  `qty` INT(5) NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
+  `imagem` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `product_code` (`product_code` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `comercio`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comercio`.`users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `fname` VARCHAR(255) NOT NULL,
+  `lname` VARCHAR(255) NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `pin` INT(6) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(15) NOT NULL,
+  `type` VARCHAR(20) NOT NULL DEFAULT 'user',
+  `imagem` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email` (`email` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 59
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `comercio`.`users_imagem`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comercio`.`users_imagem` (
+  `id_user` INT(11) NOT NULL,
+  `id_img` INT(11) NOT NULL,
+  PRIMARY KEY (`id_user`, `id_img`),
+  INDEX `fk_users_imagem_imagem1_idx` (`id_img` ASC),
+  INDEX `fk_users_imagem_users_idx` (`id_user` ASC),
+  CONSTRAINT `fk_users_imagem_imagem1`
+    FOREIGN KEY (`id_img`)
+    REFERENCES `comercio`.`imagem` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_imagem_users`
+    FOREIGN KEY (`id_user`)
+    REFERENCES `comercio`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

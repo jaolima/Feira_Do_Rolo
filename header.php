@@ -16,7 +16,7 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>Feira do E-rolo</title>
     <!-- Favicon -->
     <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -100,24 +100,33 @@ include 'config.php';
                             <span>Meu perfil</span>
                         </a>
                         <a href="cart.php" class="dropdown-item">
-                            <i class="ni ni-settings-gear-65"></i>
+                            <i class="ni ni-cart"></i>
                             <span>Carrinho</span>
                         </a>
                         <a href="orders.php" class="dropdown-item">
-                            <i class="ni ni-calendar-grid-58"></i>
-                            <span>Home</span>
+                            <i class="ni ni-shop"></i>
+                            <span>Pedidos</span>
                         </a>
                         <?php
                         if($_SESSION["type"]=="admin") {
                         ?>
                         <a href="new_product.php" class="dropdown-item">
-                            <i class="ni ni-calendar-grid-58"></i>
+                            <i class="ni ni-fat-add"></i>
                             <span>Novo Produto</span>
                         </a>
                        <?php } ?>
 
+                        <?php
+                        if($_SESSION["type"]=="admin") {
+                        ?>
+                        <a href="new_product.php" class="dropdown-item">
+                            <i class="ni ni-fat-add"></i>
+                            <span>Fornecedores</span>
+                        </a>
+                        <?php } ?>
+
                         <a href="products.php" class="dropdown-item">
-                            <i class="ni ni-support-16"></i>
+                            <i class="ni ni-bag-17"></i>
                             <span>Produtos</span>
                         </a>
                         <div class="dropdown-divider"></div>

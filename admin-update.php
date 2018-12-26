@@ -1,6 +1,5 @@
 <?php
 
-//if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(session_id() == '' || !isset($_SESSION)){session_start();}
 
 if($_SESSION["type"]!="admin") {
